@@ -12,14 +12,25 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  prefectureCheckBoxGroup,
+  prefectureTypeRadioButtonGroup,
+  chart,
 }: Readonly<{
   children: React.ReactNode;
+  prefectureCheckBoxGroup: React.ReactNode;
+  prefectureTypeRadioButtonGroup: React.ReactNode;
+  chart: React.ReactNode;
 }>) {
   return (
     <html lang='en'>
       <body className={inter.className}>
         <Header />
         {children}
+        <div className='flex '>
+          <div>{prefectureCheckBoxGroup}</div>
+          <div>{prefectureTypeRadioButtonGroup}</div>
+          <div>{chart}</div>
+        </div>
       </body>
     </html>
   );

@@ -1,3 +1,4 @@
+'use client';
 import { append, equals, reject } from 'rambda';
 import { create } from 'zustand';
 

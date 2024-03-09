@@ -11,7 +11,7 @@ interface CheckboxGroupProps {
 const CheckboxGroup = ({ prefectures }: CheckboxGroupProps) => {
   const { selectedPrefCodes, togglePrefCode } = useSelectedPrefCodes();
   return (
-    <div className='flex'>
+    <div className='grid grid-cols-12 gap-4'>
       {prefectures.map((prefecture) => (
         <Checkbox
           key={prefecture.prefCode}

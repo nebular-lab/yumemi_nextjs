@@ -26,10 +26,12 @@ export default function RootLayout({
       <body className={inter.className}>
         <Header />
         {children}
-        <div className='flex '>
-          <div>{prefectureCheckBoxGroup}</div>
-          <div>{prefectureTypeRadioButtonGroup}</div>
-          <div>{chart}</div>
+        <div className='flex flex-col space-y-4'>
+          <div className='bg-slate-300 w-full'>{prefectureCheckBoxGroup}</div>
+          <div className='bg-slate-300 w-full'>
+            {prefectureTypeRadioButtonGroup}
+          </div>
+          <div className='bg-slate-300 w-full'>{chart}</div>
         </div>
       </body>
     </html>

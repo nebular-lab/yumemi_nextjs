@@ -1,7 +1,7 @@
 'use client';
 
 import { Prefecture } from '@/type';
-import Checkbox from '../component/Checkbox';
+import Checkbox from './Checkbox';
 import useSelectedPrefCodes from '@/store/selectedPrefCodes';
 
 interface CheckboxGroupProps {

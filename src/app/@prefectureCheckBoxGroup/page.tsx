@@ -1,5 +1,5 @@
 import { fetchPrefNames } from '@/utils/fetch';
-import CheckboxGroup from './CheckboxGroup';
+import CheckboxGroup from '../component/CheckboxGroup';
 
 const PrefectureCheckBoxGroup = async () => {
   const prefectures = await fetchPrefNames();

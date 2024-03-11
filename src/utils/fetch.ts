@@ -1,4 +1,4 @@
-import { PopulationDataSchema, PrefecturesSchema } from '@/type';
+import { PopulationCompositionPerYearSchema, PrefecturesSchema } from '@/type';
 
 export const fetchPrefNames = async () => {
   const res = await fetch(
@@ -10,11 +10,12 @@ export const fetchPrefNames = async () => {
       cache: 'force-cache',
     },
   );
-  const data = await res.json();
-  return PrefecturesSchema.parse(data.result);
+  return PrefecturesSchema.parse((await res.json()).result);
 };
 
-export const fetchPopulationData = async (prefCode: number) => {
+const fetchPopulationCompositionPerYearByPrefCode = async (
+  prefCode: number,
+) => {
   const res = await fetch(
     `https://opendata.resas-portal.go.jp/api/v1/population/composition/perYear?cityCode=-&prefCode=${prefCode}`,
     {
@@ -24,6 +25,20 @@ export const fetchPopulationData = async (prefCode: number) => {
       cache: 'force-cache',
     },
   );
-  const data = await res.json();
-  return PopulationDataSchema.parse(data.result.data[0].data);
+  const data = (await res.json()).result;
+  return PopulationCompositionPerYearSchema.parse(data);
+};
+
+export const fetchPopulations = async (prefCodes: number[]) =>
+  await Promise.all(
+    prefCodes.map((prefCode) =>
+      fetchPopulationCompositionPerYearByPrefCode(prefCode),
+    ),
+  );
+
+// 県コード1(北海道)の人口構成を取得し、人口の種類[総人口、年少人口、生産年齢人口、老年人口]を返す
+export const fetchPopulationTypes = async () => {
+  const PopulationCompositionPerYear =
+    await fetchPopulationCompositionPerYearByPrefCode(1);
+  return PopulationCompositionPerYear.data.map((d) => d.label);
 };

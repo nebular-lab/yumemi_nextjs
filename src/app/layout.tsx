@@ -27,11 +27,9 @@ export default function RootLayout({
         <Header />
         {children}
         <div className='flex flex-col space-y-4'>
-          <div className='bg-slate-300 w-full'>{prefectureCheckBoxGroup}</div>
-          <div className='bg-slate-300 w-full'>
-            {prefectureTypeRadioButtonGroup}
-          </div>
-          <div className='bg-slate-300 w-full'>{chart}</div>
+          <div className=' w-full'>{prefectureCheckBoxGroup}</div>
+          <div className=' w-full'>{prefectureTypeRadioButtonGroup}</div>
+          <div className=' w-full'>{chart}</div>
         </div>
       </body>
     </html>

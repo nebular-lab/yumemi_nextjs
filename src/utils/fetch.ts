@@ -25,7 +25,7 @@ const fetchPopulationCompositionPerYearByPrefCode = async (
       cache: 'force-cache',
     },
   );
-  const data = (await res.json()).result;
+  const data = (await res.json()).result.data;
   return PopulationCompositionPerYearSchema.parse(data);
 };
 
@@ -37,8 +37,7 @@ export const fetchPopulations = async (prefCodes: number[]) =>
   );
 
 // 県コード1(北海道)の人口構成を取得し、人口の種類[総人口、年少人口、生産年齢人口、老年人口]を返す
-export const fetchPopulationTypes = async () => {
-  const PopulationCompositionPerYear =
-    await fetchPopulationCompositionPerYearByPrefCode(1);
-  return PopulationCompositionPerYear.data.map((d) => d.label);
-};
+export const fetchPopulationTypes = async () =>
+  (await fetchPopulationCompositionPerYearByPrefCode(1)).map(
+    (data) => data.label,
+  );

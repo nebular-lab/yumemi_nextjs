@@ -7,7 +7,7 @@ export const fetchPrefNames = async () => {
       headers: {
         'X-API-KEY': process.env.RESAS_API_KEY!,
       },
-      cache: 'no-store',
+      cache: 'no-cache',
     },
   );
   if (!res.ok) {
@@ -25,7 +25,7 @@ const fetchPopulationCompositionPerYearByPrefCode = async (
       headers: {
         'X-API-KEY': process.env.RESAS_API_KEY!,
       },
-      cache: 'no-store',
+      cache: 'no-cache',
     },
   );
   if (!res.ok) {

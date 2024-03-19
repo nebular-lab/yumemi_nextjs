@@ -1,38 +1,43 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## 概要
 
-## Getting Started
+このプロジェクトはNext.jsを使用したWebアプリケーションです。都道府県別の人口推移グラフを表示します。
 
-First, run the development server:
+## 開発サーバーの立ち上げ方
 
 ```bash
+npm install
+```
+```
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 使用した技術
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- React
+- Next.js (App Router)
+- Tailwind CSS
+- react-chartjs-2 
+- zod 
+- zustand
+- shadcn/ui
+- rambda
+- prettier
+- eslint
+- husky
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## 技術的な工夫した点
 
-## Learn More
+プレーンなReactだけでも作れますが、せっかくなので新しい技術を色々使ってみました。
+特に気に入った技術を紹介します。
 
-To learn more about Next.js, take a look at the following resources:
+### zod
+ランタイムで型のチェックを行うことができます。フォーム入力のヴァリデーションをするときによく使われますが、今回のように、外部のAPIを使ってフェッチしたデータが想定した型なのかのチェックにも使えます。
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Next.jsのParallel Routes
+src/app/の配下に＠から始まる三つのファイルがあります。これは、Parallel Routesという機能で、@から始まるファイルにあるpages.tsxを並行してレンダリングをすることが出来ます。並行レンダリングをすることで、レンダリング速度が速いコンポーネントを先にレンダリングすることが出来るためUXを向上させることが出来ます。また、SuspenseやErrorBoundaryを使わずに、ファイルベースでコンポーネントのローディング時やエラー時に描画するコンポーネントを管理することが出来ます。
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### shadcn/ui
+Radix UI と Tailwind CSSをベースにしたUIコンポーネントコレクションです。これは、Material UIやChakra UIのようなコンポーネントライブラリとは違い、依存関係としてインストールするのではなく、コンポーネントのコードをCLIでコピー&ペーストして使います。そのため、依存関係によって他のライブラリの影響を心配をする必要がなかったり、コピーしたコードのスタイルを自由に変更したりすることが出来たりします。
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
-# yumemi_nextjs
+### husky
+gitのフックを使って、コミット前にlintやコード整形を走らせることが出来ます。テストも走らせることが出来るので、もしテストコードを書くことになったら導入したいです。

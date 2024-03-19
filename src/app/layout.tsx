@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import Header from './component/Header';
+import Header from '../components/Header';
+import { Suspense } from 'react';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -23,13 +24,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={inter.className}>
-        <Header />
+      <body className={`${inter.className} pt-5 px-10 flex flex-col space-y-5`}>
+        <Header title='都道府県別人口推移グラフ' />
         {children}
-        <div className='flex flex-col space-y-4'>
-          <div className=' w-full'>{prefectureCheckBoxGroup}</div>
-          <div className=' w-full'>{prefectureTypeRadioButtonGroup}</div>
-          <div className=' w-full'>{chart}</div>
+        <div className='flex flex-col space-y-4 px-4'>
+          <div className=' w-full h-64 '>
+            <Header title='県選択' />
+            {prefectureCheckBoxGroup}
+          </div>
+          <div className=' w-full h-32'>
+            <Header title='人口タイプ選択' />
+            {prefectureTypeRadioButtonGroup}
+          </div>
+          <div className=' w-full h-96'>
+            <Header title='チャート' />
+            {chart}
+          </div>
         </div>
       </body>
     </html>

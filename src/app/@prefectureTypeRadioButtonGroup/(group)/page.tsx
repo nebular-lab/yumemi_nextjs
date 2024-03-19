@@ -1,9 +1,9 @@
 import { fetchPopulationTypes } from '@/utils/fetch';
-import RadioButtonGroup from '../component/RadioButtonGroup';
+import RadioButtonGroup from '../../../components/PopulationTypeRadioGroup';
 
 const PrefectureTypeRadioButtonGroup = async () => {
   const prefectureTypes = await fetchPopulationTypes();
-  return <RadioButtonGroup name='prefectureType' options={prefectureTypes} />;
+  return <RadioButtonGroup options={prefectureTypes} />;
 };
 
 export default PrefectureTypeRadioButtonGroup;

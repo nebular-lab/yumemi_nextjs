@@ -1,5 +1,5 @@
 import { fetchPopulations, fetchPrefNames } from '@/utils/fetch';
-import Chart from '../component/Chart';
+import Chart from '../../../components/Chart';
 
 const PrefectureChart = async () => {
   const prefNames = await fetchPrefNames();

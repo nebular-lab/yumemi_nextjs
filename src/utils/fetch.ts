@@ -7,9 +7,11 @@ export const fetchPrefNames = async () => {
       headers: {
         'X-API-KEY': process.env.RESAS_API_KEY!,
       },
-      cache: 'no-cache',
+      cache: 'no-store',
     },
   );
+  await wait(2000);
+
   if (!res.ok) {
     throw new Error('Failed to fetch prefectures');
   }
@@ -25,12 +27,13 @@ const fetchPopulationCompositionPerYearByPrefCode = async (
       headers: {
         'X-API-KEY': process.env.RESAS_API_KEY!,
       },
-      cache: 'no-cache',
+      cache: 'no-store',
     },
   );
   if (!res.ok) {
     throw new Error('Failed to fetch population composition per year');
   }
+  await wait(5000);
   const data = (await res.json()).result.data;
   return PopulationCompositionPerYearSchema.parse(data);
 };
@@ -47,3 +50,5 @@ export const fetchPopulationTypes = async () =>
   (await fetchPopulationCompositionPerYearByPrefCode(1)).map(
     (data) => data.label,
   );
+
+const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));

@@ -10,7 +10,7 @@ export const fetchPrefNames = async () => {
       cache: 'no-store',
     },
   );
-  await wait(2000);
+  await wait(1000);
 
   if (!res.ok) {
     throw new Error('Failed to fetch prefectures');
@@ -33,7 +33,7 @@ const fetchPopulationCompositionPerYearByPrefCode = async (
   if (!res.ok) {
     throw new Error('Failed to fetch population composition per year');
   }
-  await wait(5000);
+  await wait(2000);
   const data = (await res.json()).result.data;
   return PopulationCompositionPerYearSchema.parse(data);
 };
